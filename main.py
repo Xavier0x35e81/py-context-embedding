@@ -1,9 +1,19 @@
 from langchain.document_loaders import TextLoader
+from langchain.text_splitter import CharacterTextSplitter
 from dotenv import load_dotenv
 
 load_dotenv()
 
-loader = TextLoader("facts.txt")
-docs = loader.load()
+text_splitter = CharacterTextSplitter(
+    separator="\n",
+    # 200 char at most
+    chunk_size=200,
+    chunk_overlap=0,
+)
 
-print(docs)
+loader = TextLoader("facts.txt")
+docs = loader.load_and_split(text_splitter=text_splitter)
+
+for doc in docs:
+    print(doc.page_content)
+    print("===============================")
