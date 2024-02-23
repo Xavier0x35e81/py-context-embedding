@@ -40,6 +40,19 @@ Once inside this shell, you can run Python commands. eg:
 python main.py
 ```
 
-## env vars / keys update
+## package, env vars / keys update
 
-you need to exit the shell and re-enter using the `pipenv shell` command.
+1. package update (if needed)
+
+```zsh
+pipenv install <new-package>
+```
+
+2. exit the shell with `exit` command
+3. re-enter using the `pipenv shell` command
+
+## generating requirement.txt after package update
+
+```zsh
+pipenv run pip freeze > requirements.txt
+```
